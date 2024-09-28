@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chess Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+      .chessboard {
+        display: grid;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        width: 100%;
+        max-width: 600px; /* Increased board size */
+        height: 600px; /* Match the width to maintain a square */
+        border: 4px solid #333;
+        border-radius: 15px; /* Rounded corners for a polished look */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Enhanced box shadow */
+        transition: transform 0.3s ease-in-out;
+        overflow: hidden;
+      }
+
+      .square {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px; /* Increased piece font size */
+        transition: background-color 0.2s ease;
+      }
+
+      .square.light {
+        background-color: #f0d9b5; /* Lighter color for light squares */
+      }
+
+      .square.dark {
+        background-color: #b58863; /* Darker color for dark squares */
+      }
+
+      .piece {
+        font-size: 48px; /* Match the piece size to the increased square size */
+        cursor: pointer;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+        pointer-events: auto;
+      }
+
+      /* White pieces */
+      .piece.white {
+        color: #f8f8f8;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+      }
+
+      /* Black pieces */
+      .piece.black {
+        color: #333333;
+      }
+
+      .piece.draggable {
+        cursor: grab;
+      }
+
+      .piece.dragging {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      /* Flipped board styles */
+      .flipped {
+        transform: rotate(180deg);
+      }
+
+      .flipped .piece {
+        transform: rotate(180deg);
+      }
+
+      /* Smooth hover effect for pieces */
+      .piece:hover {
+        transform: scale(1.1);
+        text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+      }
+
+      /* Responsive layout for smaller screens */
+      @media (max-width: 768px) {
+        .chessboard {
+          width: 90vw;
+          height: 90vw;
+        }
+        .piece {
+          font-size: 36px; /* Adjust piece size for smaller screens */
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-zinc-900">
+    <div class="w-full h-screen flex items-center justify-center">
+      <div class="chessboard"></div>
+    </div>
+    <script
+      src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+      integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"
+      integrity="sha512-xRllwz2gdZciIB+AkEbeq+gVhX8VB8XsfqeFbUh+SzHlN96dEduwtTuVuc2u9EROlmW9+yhRlxjif66ORpsgVA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/js/chessgame.js"></script>
+  </body>
+</html>
