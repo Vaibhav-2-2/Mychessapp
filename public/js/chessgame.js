@@ -245,4 +245,9 @@ socket.on("Invalid move", function (move) {
   // Optionally, show an alert or message to the user about the invalid move
 });
 
+
+socket.on("gameOver", function (message) {
+  alert(message); // You can use any other method for showing notifications
+  console.log(message); // For debugging purposes
+});
 renderBoard();
